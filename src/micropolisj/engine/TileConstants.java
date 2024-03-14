@@ -300,7 +300,7 @@ public class TileConstants
 	{
 		assert (tile & LOMASK) == tile;
 
-		return tile >= RUBBLE && tile < ROADBASE;
+		return tile >= LASTRUBBLE && tile < ROADBASE;
 	}
 
 	/** Used in zonePlop(). */
