@@ -655,6 +655,17 @@ public class MainWindow extends JFrame
 			}
 			}));
 		disastersMenu.add(menuItem);
+		
+		menuItem = new JMenuItem(strings.getString("menu.disasters.GOLDRUSH"));
+		setupKeys(menuItem, "menu.disasters.GOLDRUSH");
+		menuItem.addActionListener(wrapActionListener(
+			new ActionListener() {
+			public void actionPerformed(ActionEvent ev)
+			{
+				onInvokeDisasterClicked(Disaster.GOLDRUSH);
+			}
+			}));
+		disastersMenu.add(menuItem);
 
 		JMenu priorityMenu = new JMenu(strings.getString("menu.speed"));
 		setupKeys(priorityMenu, "menu.speed");
@@ -1542,6 +1553,8 @@ public class MainWindow extends JFrame
 		case EARTHQUAKE:
 			getEngine().makeEarthquake();
 			break;
+		case GOLDRUSH:
+			getEngine().makeFire();
 		default:
 			assert false; //unknown disaster
 		}
