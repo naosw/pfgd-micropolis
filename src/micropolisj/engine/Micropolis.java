@@ -99,6 +99,7 @@ public class Micropolis
 	public boolean autoBudget = false;
 	public Speed simSpeed = Speed.NORMAL;
 	public boolean noDisasters = false;
+	public boolean noBonanza = false;
 
 	public int gameLevel;
 
@@ -919,6 +920,11 @@ public class Micropolis
 			}
 			break;
 		}
+	}
+	
+	void doBonanza()
+	{
+		return;
 	}
 
 	private int[][] smoothFirePoliceMap(int[][] omap)
@@ -2174,6 +2180,12 @@ public class Micropolis
 		noDisasters = !noDisasters;
 		fireOptionsChanged();
 	}
+	
+	public void toggleBonanza()
+	{
+		noBonanza = !noBonanza;
+		fireOptionsChanged();
+	}
 
 	public void setSpeed(Speed newSpeed)
 	{
@@ -2396,6 +2408,11 @@ public class Micropolis
 				}
 			}
 		}
+	}
+	
+	public void makeGoldrush()
+	{
+		return;
 	}
 
 	/**

@@ -11,12 +11,7 @@ package micropolisj.engine;
 /**
  * Lists the disasters that the user can invoke.
  */
-public enum Disaster
+public enum Bonanza
 {
-	MONSTER,
-	FIRE,
-	FLOOD,
-	MELTDOWN,
-	TORNADO,
-	EARTHQUAKE;
+	GOLDRUSH;
 }

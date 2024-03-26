@@ -554,6 +554,17 @@ public class MainWindow extends JFrame
 			}
 			}));
 		optionsMenu.add(disastersMenuItem);
+		
+		bonanzaMenuItem = new JCheckBoxMenuItem(strings.getString("menu.options.bonanza"));
+		setupKeys(bonanzaMenuItem, "menu.options.bonanza");
+		bonanzaMenuItem.addActionListener(wrapActionListener(
+			new ActionListener() {
+			public void actionPerformed(ActionEvent ev)
+			{
+				onBonanzaClicked();
+			}
+			}));
+		optionsMenu.add(bonanzaMenuItem);
 
 		soundsMenuItem = new JCheckBoxMenuItem(strings.getString("menu.options.sound"));
 		setupKeys(soundsMenuItem, "menu.options.sound");
@@ -589,6 +600,10 @@ public class MainWindow extends JFrame
 		JMenu disastersMenu = new JMenu(strings.getString("menu.disasters"));
 		setupKeys(disastersMenu, "menu.disasters");
 		menuBar.add(disastersMenu);
+		
+		JMenu bonanzaMenu = new JMenu(strings.getString("menu.bonanza"));
+		setupKeys(bonanzaMenu, "menu.bonanza");
+		menuBar.add(bonanzaMenu);
 
 		menuItem = new JMenuItem(strings.getString("menu.disasters.MONSTER"));
 		setupKeys(menuItem, "menu.disasters.MONSTER");
@@ -656,16 +671,16 @@ public class MainWindow extends JFrame
 			}));
 		disastersMenu.add(menuItem);
 		
-		menuItem = new JMenuItem(strings.getString("menu.disasters.GOLDRUSH"));
-		setupKeys(menuItem, "menu.disasters.GOLDRUSH");
+		menuItem = new JMenuItem(strings.getString("menu.bonanza.GOLDRUSH"));
+		setupKeys(menuItem, "menu.bonanza.GOLDRUSH");
 		menuItem.addActionListener(wrapActionListener(
 			new ActionListener() {
 			public void actionPerformed(ActionEvent ev)
 			{
-				onInvokeDisasterClicked(Disaster.GOLDRUSH);
+				onInvokeBonanzaClicked(Bonanza.GOLDRUSH);
 			}
 			}));
-		disastersMenu.add(menuItem);
+		bonanzaMenu.add(menuItem);
 
 		JMenu priorityMenu = new JMenu(strings.getString("menu.speed"));
 		setupKeys(priorityMenu, "menu.speed");
@@ -804,6 +819,7 @@ public class MainWindow extends JFrame
 	JMenuItem autoBudgetMenuItem;
 	JMenuItem autoBulldozeMenuItem;
 	JMenuItem disastersMenuItem;
+	JMenuItem bonanzaMenuItem;
 	JMenuItem soundsMenuItem;
 	Map<Speed,JMenuItem> priorityMenuItems;
 	Map<Integer,JMenuItem> difficultyMenuItems;
@@ -824,6 +840,12 @@ public class MainWindow extends JFrame
 	{
 		dirty1 = true;
 		getEngine().toggleDisasters();
+	}
+	
+	private void onBonanzaClicked()
+	{
+		dirty1 = true;
+		getEngine().toggleBonanza();
 	}
 
 	static final String SOUNDS_PREF = "enable_sounds";
@@ -1553,13 +1575,23 @@ public class MainWindow extends JFrame
 		case EARTHQUAKE:
 			getEngine().makeEarthquake();
 			break;
-		case GOLDRUSH:
-			getEngine().makeFire();
 		default:
 			assert false; //unknown disaster
 		}
 	}
 
+	private void onInvokeBonanzaClicked(Bonanza bonanza)
+	{
+		dirty1 = true;
+		switch (bonanza) {
+		case GOLDRUSH:
+			getEngine().makeGoldrush();
+			break;
+		default:
+			assert false; //unknown disaster
+		}
+	}
+	
 	private void reloadFunds()
 	{
 		fundsLbl.setText(formatFunds(getEngine().budget.totalFunds));
@@ -1593,6 +1625,7 @@ public class MainWindow extends JFrame
 		autoBudgetMenuItem.setSelected(getEngine().autoBudget);
 		autoBulldozeMenuItem.setSelected(getEngine().autoBulldoze);
 		disastersMenuItem.setSelected(!getEngine().noDisasters);
+		bonanzaMenuItem.setSelected(!getEngine().noBonanza);
 		soundsMenuItem.setSelected(doSounds);
 		for (Speed spd : priorityMenuItems.keySet())
 		{
