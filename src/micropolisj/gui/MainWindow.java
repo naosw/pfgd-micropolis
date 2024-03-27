@@ -671,6 +671,7 @@ public class MainWindow extends JFrame
 			}));
 		disastersMenu.add(menuItem);
 		
+		// adds Gold Rush option to the bonanza menu
 		menuItem = new JMenuItem(strings.getString("menu.bonanza.GOLDRUSH"));
 		setupKeys(menuItem, "menu.bonanza.GOLDRUSH");
 		menuItem.addActionListener(wrapActionListener(
@@ -1580,15 +1581,17 @@ public class MainWindow extends JFrame
 		}
 	}
 
+	// as of now, only exists for the Gold Rush bonanza
 	private void onInvokeBonanzaClicked(Bonanza bonanza)
 	{
 		dirty1 = true;
 		switch (bonanza) {
 		case GOLDRUSH:
-			getEngine().makeGoldrush();
+			getEngine().makeGoldRush(); // calls Gold Rush function
+			reloadFunds(); // reloads menu to represent change in funds
 			break;
 		default:
-			assert false; //unknown disaster
+			assert false; // unknown bonanza
 		}
 	}
 	

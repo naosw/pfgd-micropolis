@@ -9,9 +9,9 @@
 package micropolisj.engine;
 
 /**
- * Lists the disasters that the user can invoke.
+ * Lists the possible anti disasters (bonanzas) that the user can invoke.
  */
 public enum Bonanza
 {
-	GOLDRUSH;
+	GOLDRUSH; // adds $10,000 to the player budget
 }

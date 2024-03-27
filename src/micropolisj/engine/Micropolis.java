@@ -650,6 +650,7 @@ public class Micropolis
 		case 15:
 			fireAnalysis();
 			doDisasters();
+			doBonanza(); // added random bonanza call to game cycle
 			break;
 
 		default:
@@ -924,7 +925,48 @@ public class Micropolis
 	
 	void doBonanza()
 	{
-		return;
+		final int [] BonChance = { 480, 240, 60 };
+		if (noBonanza)
+			return;
+
+		if (PRNG.nextInt(BonChance[gameLevel]+1) != 0)
+			return;
+
+		switch (PRNG.nextInt(9))
+		{
+		case 0:
+			makeGoldRush();
+			break;
+		case 1:
+			makeGoldRush();
+			break;
+		case 2: 
+			makeGoldRush();
+			break;
+		case 3:
+			makeGoldRush();
+			break;
+		case 4:
+			makeGoldRush();
+			break;
+		case 5:
+			makeGoldRush();
+			break;
+		case 6:
+			makeGoldRush();
+			break;
+		case 7:
+			makeGoldRush();
+			break;
+		case 8:
+			makeGoldRush();
+			break;
+		}
+		
+		// reload funds in case of Gold Rush
+		for (Listener l : listeners) {
+			l.fundsChanged();
+		}
 	}
 
 	private int[][] smoothFirePoliceMap(int[][] omap)
@@ -2410,9 +2452,10 @@ public class Micropolis
 		}
 	}
 	
-	public void makeGoldrush()
+	public void makeGoldRush()
 	{
-		return;
+		budget.totalFunds = budget.totalFunds + 10000; // directly adds funds to player
+		sendMessageAt(MicropolisMessage.GOLDRUSH_REPORT, 200, 200);
 	}
 
 	/**
