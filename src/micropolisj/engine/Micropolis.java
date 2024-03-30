@@ -932,34 +932,10 @@ public class Micropolis
 		if (PRNG.nextInt(BonChance[gameLevel]+1) != 0)
 			return;
 
-		switch (PRNG.nextInt(9))
+		switch (PRNG.nextInt(1))
 		{
 		case 0:
-			makeGoldRush();
-			break;
-		case 1:
-			makeGoldRush();
-			break;
-		case 2: 
-			makeGoldRush();
-			break;
-		case 3:
-			makeGoldRush();
-			break;
-		case 4:
-			makeGoldRush();
-			break;
-		case 5:
-			makeGoldRush();
-			break;
-		case 6:
-			makeGoldRush();
-			break;
-		case 7:
-			makeGoldRush();
-			break;
-		case 8:
-			makeGoldRush();
+			makeGoldRush(); // only one possible bonanza to trigger
 			break;
 		}
 		

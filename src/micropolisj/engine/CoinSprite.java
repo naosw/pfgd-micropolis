@@ -27,7 +27,7 @@ public class CoinSprite extends Sprite
 		this.offy = -40;
 
 		this.frame = 1;
-		this.count = 200;
+		this.count = 150;
 	}
 
 	@Override
@@ -35,27 +35,19 @@ public class CoinSprite extends Sprite
 	{
 		int z = this.frame;
 
-		if (z == 2) {
-			//cycle animation
+		this.frame++;
 
-			if (this.flag)
-				z = 3;
-			else
-				z = 1;
+		if (this.frame > 6) { // loop through coin animation
+			this.frame = 1;
 		}
-		else {
-			this.flag = (z == 1);
-			z = 2;
-		}
+			
 
 		if (this.count > 0) {
 			this.count--;
 		}
 
-		this.frame = z;
-
-		if (this.count == 0 && city.PRNG.nextInt(501) == 0) {
-			// early termination
+		if (this.count == 0) {
+			// early termination after a certain period of time
 			this.frame = 0;
 			return;
 		}
