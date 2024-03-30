@@ -2432,7 +2432,7 @@ public class Micropolis
 	{
 		int xpos = PRNG.nextInt(getWidth() - 19) + 10;
 		int ypos = PRNG.nextInt(getHeight() - 19) + 10;
-		sprites.add(new CoinSprite(this, xpos, ypos));
+		sprites.add(new CoinSprite(this, xpos, ypos)); // sprite recreated from https://www.pixilart.com/art/coin-sprite-sheet-c7f297523ce57fc
 		budget.totalFunds = budget.totalFunds + 10000; // directly adds funds to player
 		sendMessageAt(MicropolisMessage.GOLDRUSH_REPORT, xpos, ypos);
 	}
